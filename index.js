@@ -6,8 +6,12 @@ const userRoutes = require('./routes/userRoutes');
 
 app.use(bodyParser.json());
 
+app.use(express.static('./views'));
+app.set('view engine', 'ejs');
+app.set('views', './views');
+
 app.get('/', (req, res, next) => {
-  res.send('Hello World!');
+  res.render('index', {data : 'Yeppi Yeppi!'});
 });
 
 app.use('/user', userRoutes);
