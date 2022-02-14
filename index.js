@@ -10,8 +10,12 @@ app.use(express.static('./views'));
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
-app.get('/', (req, res, next) => {
+app.get(['/', '/index'], (req, res, next) => {
   res.render('index', {data : 'Yeppi Yeppi!'});
+});
+
+app.get('/post', (req, res, next) => {
+  res.render('post', {data : 'Happy Virus'});
 });
 
 app.use('/user', userRoutes);
