@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 var multer = require('multer');
 var forms = multer();
 const userRoutes = require('./routes/userRoutes');
+const expressSession = require('express-session');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -16,6 +17,15 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 
 global.loggedIn = null;
+
+app.use(expressSession({
+  secret: 'My own app\'s secrete'
+}))
+
+app.use('*' , (req, res, next) => {
+  loggedIn = req.session.userId;
+  next();
+})
 
 // const BlogPost = require('./models/BlogPost');
 // BlogPost.find({}, (err, blogposts) => {

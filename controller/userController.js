@@ -27,7 +27,7 @@ module.exports.handleLogin = (req, res, next) => {
       if (account) {
         bcrypt.compare(password, account.password, function(err, result) {
           if(result) {
-            loggedIn = true;
+            req.session.userId = account._id;
             res.redirect('/index');
           } else {
             res.redirect('/user/login');
@@ -43,7 +43,8 @@ module.exports.handleLogin = (req, res, next) => {
   }
 }
 
-module.exports.handleLogout = (req, res, next) => {
-  loggedIn = false;
-  res.redirect('/');
+exports.handleLogout = function(req, res) {
+  req.session.destroy(() => {
+    res.redirect('/');
+  })
 }
