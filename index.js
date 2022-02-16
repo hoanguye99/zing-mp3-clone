@@ -6,7 +6,9 @@ const bodyParser = require('body-parser');
 var multer = require('multer');
 var forms = multer();
 const userRoutes = require('./routes/userRoutes');
+const postRoutes = require('./routes/postRoutes');
 const expressSession = require('express-session');
+const postController = require('./controller/postController');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -33,15 +35,14 @@ app.use('*' , (req, res, next) => {
 //   console.log(blogposts);
 // });
 
-app.get(['/', '/index'], (req, res, next) => {
-  res.render('index', {data : 'Yeppi Yeppi!'});
-});
+app.get(['/', '/index'], postController.getAllPosts);
 
-app.get('/post', (req, res, next) => {
-  res.render('post', {data : 'Happy Virus'});
-});
+// app.get('/post', (req, res, next) => {
+//   res.render('post', {data : 'Happy Virus'});
+// });
 
 app.use('/user', userRoutes);
+app.use('/post', postRoutes);
 
 const lisPort = process.env.PORT || 3023;
 app.listen(lisPort, () => {
