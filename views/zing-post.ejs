@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Clean Blog - Start Bootstrap Theme</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="/css/output.css" rel="stylesheet" />
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body>
+        <div class="w-screen h-screen bg-indigo-900 text-white overflow-x-hidden	">
+
+          <%- include('./component/zing-header'); -%>
+
+
+          <!-- Body -->
+          <div class="my-24">
+            <article class="max-w-4xl mx-auto">
+              <img class="h-full rounded-2xl	mx-auto" src = "/image/savage_album.jpeg" alt="Savage album"/>
+              <div class=" flex flex-col justify-center items-center">
+                      <h2 class="mt-8 mb-16 text-6xl">
+                        <%= post.title %>
+                      </h2>
+                      <div>
+                        <%= post.body %>
+                      </div>
+              </div>
+          </article>
+          </div>
+
+        </div>
+
+    </body>
+</html>

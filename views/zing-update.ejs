@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Clean Blog - Start Bootstrap Theme</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="/css/output.css" rel="stylesheet" />
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body>
+        <div class="w-screen h-screen bg-indigo-900 text-white overflow-x-hidden	">
+
+          <%- include('./component/zing-header'); -%>
+
+
+          <!-- Body -->
+          <div class="my-24">
+            <div class="flex flex-col	justify-center items-center ">
+              <img class="h-full rounded-2xl	" src = "/image/savage_album.jpeg" alt="Savage album"/>
+              <p class="mt-8 my-16 text-6xl">Update a post</p>
+              <form action="/post/update" method="POST" class="text-black">
+                <div class="control-group mb-5">
+                  <div class="form-group ">
+                    <label class="text-white block text-sm opacity-70 mb-1">Title</label>
+                    <input type="text" class="form-control p-1 rounded" id="title" name="title" value="<%=`${post.title}`%>">
+                  </div>
+                </div>
+                <div class="control-group">
+                  <div class="form-group">
+                    <label class="text-white block text-sm opacity-70 mb-1">Body</label>
+                    <input class="form-control p-1 rounded" id="body" name="body" value="<%=`${post.body}`%>">
+                  </div>
+                </div>
+                <input type="hidden" name="id" value=<%=`${post.id}`%>>
+                <br>
+                <div class="form-group mt-8">
+                  <button type="submit" class="py-2 px-4 text-sm bg-blue-200 rounded">Send</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+
+    </body>
+</html>

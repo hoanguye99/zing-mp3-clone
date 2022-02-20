@@ -9,14 +9,19 @@ const postController = require('../controller/postController');
 // })
 
 router.get('/create', (req, res, next) => {
-  console.log('7 rings 7 rings7 rings7 rings7 rings7 rings7 rings7 rings7 rings7 rings');
-  res.render('create');
+  res.render('zing-create');
 });
 
 router.get('/:id', postController.getPostById);
 
 
 router.post('/create', postController.createPost);
+
+router.get('/update/:id', postController.getPostById);
+
+router.post('/update', postController.updatePostById);
+
+router.post('/delete', postController.deletePost);
 
 
 module.exports = router;

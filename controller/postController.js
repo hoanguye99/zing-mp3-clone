@@ -13,11 +13,22 @@ module.exports.createPost = (req, res, next) => {
   }
 }
 
+module.exports.deletePost = (req, res, next) => {
+  try {
+    BlogPost.deleteOne({ _id : req.body.post_id}, (err, user) => {
+      res.redirect('/')
+    });
+  } catch(err) {
+    res.redirect('/')
+    console.error(err);
+  }
+}
+
 module.exports.getAllPosts = (req, res, next) => {
   // const {title, body} = req.body;
   try {
     BlogPost.find({}, (err, posts) => {
-      res.render('index', {posts : posts});
+      res.render('zing-index', {posts : posts});
     });
   } catch(err) {
     console.error(err);
@@ -27,10 +38,28 @@ module.exports.getAllPosts = (req, res, next) => {
 module.exports.getPostById = (req, res, next) => {
   // const {title, body} = req.body;
   try {
-    BlogPost.findById(req.params.id, (err, post) => {
-      res.render('post', {post : post});
+    if (req.originalUrl.split('/').includes('update')) {
+      BlogPost.findById(req.params.id, (err, post) => {
+        res.render('zing-update', {post : post});
+      });
+    } else {
+     BlogPost.findById(req.params.id, (err, post) => {
+        res.render('zing-post', {post : post});
+      });
+    }
+  } catch(err) {
+    console.error(err);
+  }
+}
+
+module.exports.updatePostById = (req, res, next) => {
+  // const {title, body} = req.body;
+  try {
+    BlogPost.findOneAndUpdate({ _id : req.body.id}, req.body, (err, post) => {
+      res.redirect('/');
     });
   } catch(err) {
+    res.redirect('/');
     console.error(err);
   }
 }

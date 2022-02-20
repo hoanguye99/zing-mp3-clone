@@ -1,0 +1,18 @@
+<!-- header -->
+<div class="fixed top-0 left-0 right-0 h-14 bg-purple-700 z-10">
+  <div class="h-full mx-6 flex justify-between items-center">
+
+    <img class="h-10" src = "../image/ZingMP3logo.svg" alt="Zing SVG"/>
+    <div class="flex gap-6 text-sm">
+      <a href="/index">Home</a>
+      <% if(loggedIn) { %>
+        <a href="/post/create">New Post</a>
+        <a href="/user/logout">Log out</a>
+      <% } %>
+      <% if(!loggedIn) { %>
+        <a href="/user/register">Register</a>
+        <a href="/user/login">Log in</a>
+      <% } %>
+    </div>
+  </div>
+</div>

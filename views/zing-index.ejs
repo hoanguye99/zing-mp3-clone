@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Clean Blog - Start Bootstrap Theme</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="/css/output.css" rel="stylesheet" />
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body>
+        <div class="w-screen h-screen bg-indigo-900 text-white overflow-x-hidden	">
+
+          <%- include('./component/zing-header'); -%>
+
+          <!-- hero -->
+          <div style="height: 80vh;" class="pt-20 w-screen flex justify-center items-center relative">
+            <img class="h-full rounded-2xl	" src = "./image/savage_hero.jpeg" alt="Aespa hero"/>
+            <p style="bottom: -7rem;" class="absolute text-8xl">Savage - aespa</p>
+          </div>
+
+          <!-- Body -->
+          <div class="my-32">
+            <div class="flex flex-col	justify-center items-center divide-y gap-10">
+              
+              <% for (let post of posts) {%>
+                <!-- Post preview-->
+                <div class="max-w-lg pt-10">
+                    <div class="flex gap-5 mb-4">
+                      <a href= <%=`/post/${post.id}` %> ><h2 class="text-3xl font-extrabold	"> <%= post.title %> </h2></a>
+                      <form action="/post/delete" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="post_id" value=<%=`${post.id}`%>>
+                        <button type="submit" class="py-2 px-4 text-sm bg-red-600 rounded">Delete</button>
+                      </form>
+                      <a class="py-2 px-4 text-sm bg-cyan-600 rounded" href= <%=`/post/update/${post.id}` %> > Update </a>
+                    </div>
+                    <p class="italic font-light	opacity-80">
+                      <%= post.body %>
+                    </p>
+                </div>
+              <% } %>
+              
+
+            </div>
+          </div>
+        </div>
+    </body>
+</html>

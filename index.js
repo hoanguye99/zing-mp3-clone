@@ -37,6 +37,9 @@ app.use('*' , (req, res, next) => {
 
 app.get(['/', '/index'], postController.getAllPosts);
 
+app.get('/zing-index', (req, res, next) => {
+  res.render('zing-index');
+});
 // app.get('/post', (req, res, next) => {
 //   res.render('post', {data : 'Happy Virus'});
 // });

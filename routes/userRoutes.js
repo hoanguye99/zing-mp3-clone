@@ -9,13 +9,13 @@ const userController = require('../controller/userController');
 // })
 
 router.get('/register', (req, res, next) => {
-  res.render('register');
+  res.render('zing-register');
 });
 
 router.post('/register', userController.handleRegister);
 
 router.get('/login', (req, res, next) => {
-  res.render('login');
+  res.render('zing-login');
 });
 
 router.post('/login', userController.handleLogin);
