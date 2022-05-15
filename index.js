@@ -1,4 +1,4 @@
-require('./config/db.config');
+const {connectionString} = require('./config/db.config');
 require('dotenv').config();
 const express = require('express');
 const app = express();
@@ -9,10 +9,11 @@ const userRoutes = require('./routes/userRoutes');
 const postRoutes = require('./routes/postRoutes');
 const expressSession = require('express-session');
 const postController = require('./controller/postController');
+const MongoStore = require('connect-mongo');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(forms.array()); 
+app.use(forms.array());
 
 app.use(express.static('./views'));
 app.set('view engine', 'ejs');
@@ -20,14 +21,18 @@ app.set('views', './views');
 
 global.loggedIn = null;
 
-app.use(expressSession({
-  secret: 'My own app\'s secrete'
-}))
+const sessionOption = {
+  secret: "My own app's secrete",
+  store: MongoStore.create({ mongoUrl: connectionString }),
+  resave: false,
+  saveUninitialized: false,
+};
+app.use(expressSession(sessionOption));
 
-app.use('*' , (req, res, next) => {
+app.use('*', (req, res, next) => {
   loggedIn = req.session.userId;
   next();
-})
+});
 
 // const BlogPost = require('./models/BlogPost');
 // BlogPost.find({}, (err, blogposts) => {
@@ -37,7 +42,7 @@ app.use('*' , (req, res, next) => {
 
 app.get(['/', '/index'], postController.getAllPosts);
 
-app.get('/zing-index', (req, res, next) => {
+app.get('/zingindex-', (req, res, next) => {
   res.render('zing-index');
 });
 // app.get('/post', (req, res, next) => {
